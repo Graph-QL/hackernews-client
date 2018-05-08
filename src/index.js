@@ -28,12 +28,14 @@ const middlewareAuthLink = new ApolloLink((operation, forward) => {
   return forward(operation)
 })
 
+const httpLinkWithAuthToken = middlewareAuthLink.concat(httpLink)
+
 const client = new ApolloClient({
   link: httpLinkWithAuthToken,
   cache: new InMemoryCache()
 })
 
-const httpLinkWithAuthToken = middlewareAuthLink.concat(httpLink)
+
 
 // 4
 ReactDOM.render(
